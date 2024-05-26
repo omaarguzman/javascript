@@ -32,23 +32,27 @@ let TotalArray = [];
 //     console.table(TotalArray);
 // }
 
-const boton = document.getElementById("boton");
-const Nombre = document.getElementById("nombre");
-const Ahorro = document.getElementById("ahorro");
-const Tiempo = document.getElementById("tiempo");
+const formulario = document.getElementById("formulario");
 
-boton.addEventListener("click", () => {
-    function calcularRendimiento(Tiempo) {
-        TotalArray[0] = Ahorro;
-        TotalArray[1] = Ahorro + (Ahorro * rendimiento);
-    
-        for (let i = 2; i <= Tiempo; i++) {
-            TotalArray[i] = TotalArray[i-1] + (TotalArray[i-1] * rendimiento);
+formulario.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const Nombre = document.getElementById("nombre");
+    const Ahorro = parseInt(document.getElementById("ahorro"));
+    const Tiempo = parseInt(document.getElementById("tiempo"));
+    function calcularRendimiento(ahorro, tiempo) {
+        TotalArray[0] = ahorro;
+        TotalArray[1] = ahorro + (ahorro * rendimiento);
+
+        for (let i = 2; i <= tiempo; i++) {
+            TotalArray[i] = TotalArray[i - 1] + (TotalArray[i - 1] * rendimiento);
         }
+
+        console.table(TotalArray[i]);
+    }
     
-        console.table(TotalArray);
-    }});
+});
 
-
+console.log(TotalArray);
 
 // confirm("Al terminar tu ahorro tendrás $" + TotalArray[tiempoAhorro] + "pesos.");
