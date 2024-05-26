@@ -12,30 +12,33 @@ h3 {
     font-size: 45px;
 }
 
-#nombre {
+h2, h3 {
+    margin: 60px;
+    background-color: gray;
+}
+
+#nombre, #ahorro, #tiempo, #label1, #label2, #label3, #boton {
     font-size: 30px;
 }
 
-#ahorro {
-    font-size: 30px;
+#nombre, #ahorro, #tiempo {
+    align-items: center;
+    width: 100%;
+    padding: 0px;
+} 
+
+#app {
+    display: flex; 
+    justify-content: center;
 }
 
-#tiempo {
+#formulario {
     font-size: 30px;
+    background-color: green;
+    padding: 10px;
 }
 
-#label1 {
-    font-size: 30px;
-}
-
-#label2 {
-    font-size: 30px;
-}
-
-#label3 {
-    font-size: 30px;
-}
-
-#boton {
-    font-size: 30px;
+#boton-form {
+    display: flex; 
+    justify-content: center;
 }
