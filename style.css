@@ -1,44 +1,67 @@
-h1 {
-    text-align: center;
-    background-color: rgb(145, 145, 223);
-    font-size: 70px;
-}
-
-h2 {
-    font-size: 60px;
-}
-
-h3 {
-    font-size: 45px;
-}
-
-h2, h3 {
-    margin: 60px;
-    background-color: gray;
-}
-
-#nombre, #ahorro, #tiempo, #label1, #label2, #label3, #boton {
-    font-size: 30px;
-}
-
-#nombre, #ahorro, #tiempo {
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #db5b5b;
+    display: flex;
+    justify-content: center;
     align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background-color: #c5c3c3;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 400px;
+}
+
+h1 {
+    color: #333;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #666;
+}
+
+input[type="number"],
+button {
+    padding: 8px;
+    margin-bottom: 10px;
     width: 100%;
-    padding: 0px;
-} 
-
-#app {
-    display: flex; 
-    justify-content: center;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
-#formulario {
-    font-size: 30px;
-    background-color: green;
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+#resultado {
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+#tablaCrecimiento {
+    background-color: #fff;
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
     padding: 10px;
-}
-
-#boton-form {
-    display: flex; 
-    justify-content: center;
+    text-align: left;
 }

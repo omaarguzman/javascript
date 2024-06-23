@@ -1,58 +1,48 @@
-// Calculadora de ahorros y rendimientos
-
-// alert("Esta es una calculadora que simula los rendimientos que puedes ganar si ahorras con nosotros.");
-// confirm("¿Deseas realizar una simulación?");
-
-// const nombre = prompt("Ingresa tu nombre");
-// if(!isNaN(nombre)) {
-//     alert("Ingresaste un dato no válido");
-// }
-
-// const cantidadAhorro = Number(prompt("Muy bien " + nombre + ", ¿cuánto quieres ahorrar?"));
-// // if(!isNaN(cantidadAhorro)) {
-// //     alert("Ingresaste un dato no válido");
-// // }
-
-// const tiempoAhorro = Number(prompt(nombre + ", ¿cuántos meses deseas conservar tu ahorro?"));
-// // if(!isNaN(tiempoAhorro)) {
-//     alert("Ingresaste un dato no válido");
-// }
-
-const rendimiento = 0.05
-let TotalArray = [];
-
-// function calcularRendimiento(tiempo) {
-//     TotalArray[0] = cantidadAhorro;
-//     TotalArray[1] = cantidadAhorro + (cantidadAhorro * rendimiento);
-
-//     for (let i = 2; i <= tiempo; i++) {
-//         TotalArray[i] = TotalArray[i-1] + (TotalArray[i-1] * rendimiento);
-//     }
-
-//     console.table(TotalArray);
-// }
-
-const formulario = document.getElementById("formulario");
-
-formulario.addEventListener("submit", (event) => {
+document.getElementById('ahorroForm').addEventListener('submit', function (event) {
     event.preventDefault();
 
-    const Nombre = document.getElementById("nombre");
-    const Ahorro = parseInt(document.getElementById("ahorro"));
-    const Tiempo = parseInt(document.getElementById("tiempo"));
-    function calcularRendimiento(ahorro, tiempo) {
-        TotalArray[0] = ahorro;
-        TotalArray[1] = ahorro + (ahorro * rendimiento);
+    // Obtener los valores del formulario
+    let montoInicial = parseFloat(document.getElementById('montoInicial').value);
+    let tasaInteresAnual = parseFloat(document.getElementById('tasaInteres').value);
+    let anios = parseInt(document.getElementById('anios').value);
 
-        for (let i = 2; i <= tiempo; i++) {
-            TotalArray[i] = TotalArray[i - 1] + (TotalArray[i - 1] * rendimiento);
-        }
-
-        console.table(TotalArray[i]);
+    // Validar que los campos no estén vacíos
+    if (isNaN(montoInicial) || isNaN(tasaInteresAnual) || isNaN(anios)) {
+        alert('Por favor, completa todos los campos correctamente.');
+        return;
     }
-    
+
+    // Calcular el valor futuro del ahorro con interés compuesto
+    let valorFuturo = calcularAhorro(montoInicial, tasaInteresAnual, anios);
+
+    // Mostrar el resultado en la página
+    document.getElementById('resultado').innerHTML = `El valor futuro del ahorro después de ${anios} años será: $${valorFuturo}`;
+
+    // Generar y mostrar la tabla de crecimiento del ahorro
+    let tablaCrecimientoHTML = '<h2>Tabla de Crecimiento del Ahorro</h2>';
+    tablaCrecimientoHTML += '<table>';
+    tablaCrecimientoHTML += '<tr><th>Año</th><th>Valor acumulado</th></tr>';
+
+    let montoAcumulado = montoInicial;
+    for (let i = 1; i <= anios; i++) {
+        montoAcumulado *= (1 + tasaInteresAnual / 100);
+        montoAcumulado = Math.round(montoAcumulado * 100) / 100;
+        tablaCrecimientoHTML += `<tr><td>${i}</td><td>$${montoAcumulado}</td></tr>`;
+    }
+
+    tablaCrecimientoHTML += '</table>';
+    document.getElementById('tablaCrecimiento').innerHTML = tablaCrecimientoHTML;
 });
 
-console.log(TotalArray);
+function calcularAhorro(montoInicial, tasaInteresAnual, anios) {
+    // Convertir la tasa de interés a decimal
+    let tasaInteresDecimal = tasaInteresAnual / 100;
 
-// confirm("Al terminar tu ahorro tendrás $" + TotalArray[tiempoAhorro] + "pesos.");
+    // Calcular el valor futuro del ahorro con interés compuesto
+    let valorFuturo = montoInicial * Math.pow(1 + tasaInteresDecimal, anios);
+
+    // Redondear el resultado a 2 decimales
+    valorFuturo = Math.round(valorFuturo * 100) / 100;
+
+    return valorFuturo;
+}
