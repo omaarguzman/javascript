@@ -12,9 +12,7 @@ Swal.fire({
     `
   });
 
-document
-  .getElementById("ahorroForm")
-  .addEventListener("submit", function (event) {
+document.getElementById("ahorroForm").addEventListener("submit", function (event) {
     event.preventDefault();
 
     // Obtener los valores del formulario
